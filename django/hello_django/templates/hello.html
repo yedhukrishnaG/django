@@ -1,0 +1,52 @@
+
+{% load static %}     
+<html>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+
+<div class="container">
+  <ul class="nav bg-info">
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/hello">MEMBERS</a>
+    </li>
+
+  </ul>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="f_name">First name:</label><br>
+    <input type="text" id="f_name" name="f_name"><br>
+    <label for="l_name">Last name:</label><br>
+    <input type="text" id="l_name" name="l_name">
+    {% bootstrap_button button_type="submit" content="OK" %}
+
+   
+  </form>
+
+  {% block content %}
+  {% endblock %}
+</div>
+
+{% bootstrap_messages %}
+
+
+
+</body>
+
+<div>
+<a href="{% url 'nonbt'%}"> old view </a>
+</div>
+<img src = "{% static 'images/home.png' %}"/>
+</html>
+
+
+

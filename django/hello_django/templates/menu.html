@@ -1,0 +1,13 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<div>
+<li>
+    <a href="{% url 'create'%}"> create </a>
+</li> 
+<li>
+    <a href="{% url 'list'%}"> list </a>   
+</li> 
+
+</div>
+{%  include 'home.html' %}               

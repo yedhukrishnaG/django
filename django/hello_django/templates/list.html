@@ -1,0 +1,91 @@
+<h1> list <h1>
+{%  include 'home.html' %} 
+</br>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataTables Example</title>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <!-- Include DataTables JS -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<style>
+    /* Custom styles for the button */
+    .custom-button {
+        background-color: white; /* Change background color to white */
+        color: black; /* Change text color to black */
+        font-size: 12px; /* Change font size to smaller */
+        border: 1px solid black; /* Add border */
+    }
+
+    /* Override Bootstrap button styles */
+  
+</style>
+ 
+<table id="example"  class="display">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Value</th>
+        <th scope="col">Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for obj in all_data %}
+      {% if obj.id == id_value %}
+         <tr id="{{ obj.id }}">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ obj.id }}">
+                <input type="hidden" name="f_name_original" value="{{ obj.f_name }}">
+                <input type="hidden" name="l_name_original" value="{{ obj.l_name }}">
+                <input type="hidden" name="gender_original" value="{{ obj.gender }}">
+                <input type="hidden" name="value_original" value="{{ obj.value }}">
+                <td>{{ obj.id }}</td>
+                <td><input type="text" name="f_name" value="{{ obj.f_name }}"></td>
+                <td><input type="text" name="l_name" value="{{ obj.l_name }}"></td>
+                <td><input type="text" name="gender" value="{{ obj.gender }}"></td>
+                {% if obj.gender == 'M' %}
+                     <td>True</td>
+                {% else %}
+                     <td>False</td>
+                {% endif %} 
+                
+      
+                <td>{% bootstrap_button button_type="submit" content="Submit" extra_classes="custom-button" %}
+                </td>
+            </form>
+        </tr>
+       {% else %} 
+         <tr id="{{ obj.id }}">
+              <td>{{ obj.id }}</td>
+              <td>{{ obj.f_name }}</td>
+              <td>{{ obj.l_name }}</td>
+              <td>{{ obj.gender }}</td>
+              <td>{{ obj.value }}</td>
+              <td><a href="{% url 'edit' obj.id %}">Edit</a>/<a href="{% url 'delete' obj.id %}">Delete</a></td>
+         </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+
+
+  
+ 

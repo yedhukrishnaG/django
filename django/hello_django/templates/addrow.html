@@ -1,0 +1,21 @@
+<h1> Add row <h1>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <form method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+       
+         article_number: <input type="text" name="article_number" /></br>
+         article_title : <input type="text" name=" article_title" /> </br> 
+         stock_level: <input type="text" name="stock_level" /></br>
+         earliest_expiration_date: <input type="text" name="earliest_expiration_date" /> </br>
+         batch_amount: <input type="text" name="batch_amount" /></br>
+         reorder_level: <input type="text" name="reorder_level" />  </br>
+         maximum_level: <input type="text" name="maximum_level" /></br>
+
+        {% bootstrap_button button_type="submit" content="Submit" %}
+    </form>
+
+    <a href="/dashboard" class="btn btn-primary btn-lg btn-block">Dashboard</a>
+
+    

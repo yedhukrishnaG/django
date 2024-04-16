@@ -1,0 +1,180 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light nav-bar-custom-style">
+    <img src="/static/images/navbar_images/left.png" id="nav-left-image" alt="left" class="h-100 d-inline-block img-styles" style="left: 0;">
+
+    <div style="display" class="ml-5" id="implify-connect-logo">
+        
+        <a href="/admin" class="ml-5">
+            <img src="/static/images/navbar_images/implify_connect_logo_new.png">
+        </a>
+        
+    </div>
+
+    <button class="navbar-toggler position-between" type="button" style="z-index: 2;" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse account-collapse mt-xs-5" style="z-index: 2;" id="navbarToggler">
+        <ul class="navbar-nav ml-auto d-flex mr-5">
+            
+            
+            <form id="language_selector" style="margin-left: 10px" action="/i18n/setlang/" method="post">
+                <input type="hidden">
+                <input name="next" type="hidden" value="/implify/">
+                <div class="d-flex align-items-center"> <!-- Use flexbox for side-by-side layout -->
+                    <div class="form-group mb-0">
+                        <select name="language" class="form-control">
+                            <option value="de">Deutsch</option>
+                            <option value="en" selected="selected">English</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-0 ml-2">
+                        <button class="btn btn-outline-secondary" type="submit" data-loading-text="Submitting...">Go</button>
+                    </div>
+                </div>
+            </form>
+            
+            
+
+                <li class="nav-item mr-2">
+                    
+                        <a href="/accounts/" class="nav-link mt-2 mt-lg-0">
+                            <i class="far fa-user mr-2"></i>
+                            Account
+                        </a>
+                    
+                </li>
+                
+                    <li class="nav-item mr-2">
+                        <a href="/dashboard/reports/" class="nav-link">
+                            <i class="fas fa-list-ul mr-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                
+                <li class="nav-item mr-2">
+                    <a id="logout_link" href="/accounts/logout/" class="nav-link">
+                        <i class="fas fa-sign-out-alt mr-2"></i>
+                        Logout
+                    </a>
+                </li>
+            
+            
+        </ul>
+    </div>
+
+    <img src="/static/images/navbar_images/right.png" alt="right" id="nav-right-image" class="h-100 d-inline-block img-styles" style="right: 0;">
+</nav>
+
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Implify Connect</title>
+      <!-- Include jQuery -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <!-- Include DataTables CSS -->
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+      <!-- Include DataTables JS -->
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    </head>
+    <style>
+        /* Custom CSS for blue table header */
+        .table-header-blue {
+          background-color: #007bff; /* Blue color */
+          color: white; /* Text color */
+        }
+
+      </style>
+<div id="dashboard">
+      <div>Select a partner</div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Partners
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">Action 1</a></li>
+          <li><a class="dropdown-item" href="#">Action 2</a></li>
+          <li><a class="dropdown-item" href="#">Action 3</a></li>
+        </ul> 
+      </div>
+     <div>
+    <table id="example"  class="display">
+        <thead class="table-header-blue">
+          <tr>
+            <th scope="col">Article Number</th>
+            <th scope="col">Article Title</th>
+            <th scope="col">Stock Level</th>
+            <th scope="col">Earliest Expiration Date</th>
+            <th scope="col">Batch Amount</th>
+            <th scope="col">Reorder level</th>
+            <th scope="col">Maximum level</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for item in data_set %}
+            <tr>
+                <td>{{ item.article_number }}</td>
+                <td>{{ item.article_title }}</td>
+                <td>{{ item.stock_level }}</td>
+                <td>{{ item.earliest_expiration_date }}</td>
+                <td>{{ item.batch_amount }}</td>
+                <td>{{ item.reorder_level }}</td>
+                <td>{{ item.maximum_level }}</td>
+            </tr>
+            {% endfor %}
+        
+        </tbody>
+      </table>
+    </div> 
+</div>    
+<script>
+    $(document).ready(function () {
+        // Function to handle screen width check and actions
+        function handleScreenWidth() {
+            // Check screen width
+            var screenWidth = window.innerWidth;
+
+            // If screen width is less than 768px (bootstrap mobile breakpoint), show alert
+            if (screenWidth < 768) {
+                document.getElementById("dashboard").style.display = 'none';
+                $('#alertMessage').removeClass('d-none'); // Show alert message
+                $('#dataTableContainer').addClass('d-none'); // Hide DataTable container
+                alert("Sorry, this page is not available on mobile devices. Please switch to desktop view.");
+            
+            } else {
+                // If screen width is greater than or equal to 768px, show DataTable
+                $('#alertMessage').addClass('d-none'); // Hide alert message
+                $('#dataTableContainer').removeClass('d-none'); // Show DataTable container
+                document.getElementById("dashboard").style.display = 'block';
+                // Check if DataTable is already initialized
+                if (!$.fn.DataTable.isDataTable('#example')) {
+                    // Initialize DataTable
+                    $('#example').DataTable({
+                        "lengthMenu": [],
+                        "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
+                        "lengthChange": false
+                    });
+                }
+            }
+        }
+
+        // Call handleScreenWidth function on page load
+        handleScreenWidth();
+
+        // Call handleScreenWidth function on window resize
+        $(window).resize(handleScreenWidth);
+
+        // Call handleScreenWidth function when the page is reloaded
+        $(window).on('load', handleScreenWidth);
+
+        // Call handleScreenWidth function when the page is about to be reloaded
+        $(window).on('beforeunload', handleScreenWidth);
+    });
+</script>
+
+<a href="/main" class="btn btn-primary btn-lg btn-block">Main</a>
+

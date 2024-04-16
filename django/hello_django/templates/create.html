@@ -1,0 +1,17 @@
+<h1> create <h1>
+    {% include 'home.html' %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <form method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        {% if data.f_name and data.l_name %}
+             First Name: <input type="text" name="f_name" value="{{ data.f_name }}"/>
+             Last Name: <input type="text" name="l_name" value="{{ data.l_name }}"/>
+        {% else %}  
+             First Name: <input type="text" name="f_name" />
+             Last Name: <input type="text" name="l_name" />  
+        {% endif %}
+        {% bootstrap_button button_type="submit" content="Submit" %}
+    </form>
+    

@@ -1,0 +1,42 @@
+
+      
+<html>
+    
+<head>
+  <title>{% block title %}{% endblock %}</title>
+
+</head>
+<body>
+
+<div class="container">
+  <ul class="nav bg-info">
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/hello">MEMBERS</a>
+    </li>
+
+  </ul>
+
+  <form>
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname">
+    <button type="button">Ok</button>
+    <button type="button">Canel</button>
+   
+  </form>
+
+  {% block content %}
+  {% endblock %}
+</div>
+
+
+</body>
+<a href="{% url 'hello'%}"> bootstrap5 view </a>
+</html>
+
+
+
