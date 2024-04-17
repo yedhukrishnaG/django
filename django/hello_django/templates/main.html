@@ -62,7 +62,7 @@
                 </li>
 
                 <li class="nav-item mr-2">
-                    <a href="/dashboard/reports/" class="nav-link">
+                    <a href="/dashboard" class="nav-link">
                         <i class="fas fa-list-ul mr-2"></i>
                         Dashboard
                     </a>
@@ -81,33 +81,57 @@
             class="h-100 d-inline-block img-styles" style="right: 0;">
     </nav>
 
+    </div>
+
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6 border-end">
+            <div class="col-md-6">
                 <!-- Left Part -->
                 <div class="row mb-3">
                     <div class="col">
-                        <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 24px; padding: 20px;">Dashboard: {{row_count}}</a>
+                        <button id="stockRecordButton" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
+                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;">Stock Record</a>
+                            <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
+                            <p id="rowCount" style="color:white; position: relative; z-index: 1;">{{ row_count }}</p>
+                        </button>
                     </div>
+                    <div class="col ">
+                        <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
+                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;"> &nbsp&nbsp   Partners &nbsp  &nbsp</a>
+                            <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
+                            <p style="color:white; position: relative; z-index: 1;">{{ row_count }}</p>
+                        </button>
+
+                    </div>
+
                     
+                </div>
+                <div class="row mb-3">
                     <div class="col">
-                        <button class="btn btn-primary btn-lg btn-block" style="font-size: 24px; padding: 20px;" >Articles</button>                    </div>
+                        <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
+                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Report&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                            <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
+                            <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
+                        </button>
                     </div>
-                <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary btn-lg btn-block" style="font-size: 24px; padding: 20px;">Partners</button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary btn-lg btn-block" style="font-size: 24px; padding: 20px;">Admin</button>
-                    </div>
+                        <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
+                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Admin&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                            <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
+                            <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
+                        </button>                
                 </div>
             </div>
-            <div class="col-md-6">
-                <canvas id="doughnutChartCanvas" style="height: 300px;"></canvas>
-            </div>
-            
+           
+        </div>
+        <div class="col-md-6" style="border-left: 1px solid #ccc; ">
+            <canvas id="doughnutChartCanvas" style="height: 300px;"></canvas>
         </div>
     </div>
+   
+
+    
+  
 
     <!-- Include Bootstrap JS at the end -->
     {% bootstrap_javascript %}
@@ -123,12 +147,12 @@
     var row_count = {{ row_count }};
     var total = 100;
     var doughnutChartData = {
-        labels: ['Total', 'Available'],
+        labels: ['Total', 'In Stock'],
         datasets: [{
             data: [total-row_count,row_count],
             backgroundColor: [
-                'green',
-                'blue',
+                'lightgreen',
+                'skyblue',
             ]
         }]
     };
