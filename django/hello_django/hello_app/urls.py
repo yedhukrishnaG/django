@@ -28,6 +28,7 @@ urlpatterns = [
     path('nonbt/', views.old_view, name='nonbt'),
     path('report/', views.report, name='report'),
     path('homepage/', views.homepage, name='homepage'),
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('addrow/', views.addrow, name='addrow'),
     path('', views.print_hello),
 ]

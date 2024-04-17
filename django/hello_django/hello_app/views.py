@@ -1,5 +1,6 @@
 from django.shortcuts import render # type: ignore
 from django.http import HttpResponse  # type: ignore
+from django.db.models import Sum
 # Create your views here.
 from django.shortcuts import render,redirect  # type: ignore
 from .models import Basicinfo,Dashboard
@@ -85,11 +86,19 @@ def old_view(request):
 
 def report(request):
     data_set = Dashboard.objects.all()
-    return render(request,'report.html',{'data_set':data_set})
+    total_stock_level = data_set.aggregate(total_stock_level=Sum('stock_level'))['total_stock_level']
+
+    return render(request,'report.html',{'data_set':data_set,'total_stock_level':total_stock_level})
 
 def homepage(request):
     row_count = Dashboard.objects.count()
-    return render(request,'homepage.html',{'row_count':row_count})
+    total_stock_level = Dashboard.objects.all().aggregate(total_stock_level=Sum('stock_level'))['total_stock_level']
+
+    return render(request,'homepage.html',{'row_count':row_count,'total_stock_level':total_stock_level})
+
+def dashboard(request):
+
+    return render(request,'dashboard.html',)
 
 def addrow(request):
     if(request.POST):

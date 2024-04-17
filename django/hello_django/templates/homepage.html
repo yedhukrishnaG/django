@@ -97,9 +97,9 @@
                     </div>
                     <div class="col ">
                         <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
-                            <a href="/report" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;"> &nbsp&nbsp   Partners &nbsp  &nbsp</a>
+                            <a href="/report" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;">  Stock Level &nbsp  </a>
                             <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
-                            <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
+                            <p style="color:white; position: relative; z-index: 1;">{{total_stock_level}}</p>
                         </button>
                     </div>
 
@@ -107,7 +107,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
-                            <a href="/report" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Report&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Report&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                             <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
                             <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
                         </button>
@@ -146,11 +146,12 @@
 <script>
     // Data for the doughnut chart
     var row_count = {{ row_count }};
+    var total_stock_level = {{ total_stock_level }};
     var total = 100;
     var doughnutChartData = {
-        labels: ['Total', 'In Stock'],
+        labels: ['Stock Level', 'Stock Records'],
         datasets: [{
-            data: [total-row_count,row_count],
+            data: [total_stock_level,row_count],
             backgroundColor: [
                 'lightgreen',
                 'skyblue',
@@ -192,7 +193,7 @@
             var clickedElementIndex = activePoints[0].index;
             if (clickedDatasetIndex === 0) {
                 var label = doughnutChart.data.labels[clickedElementIndex];
-                if (label === 'In Stock') {
+                if (label === 'Stock Records') {
                     window.location.href = '/report';
                 }
             }

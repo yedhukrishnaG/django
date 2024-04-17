@@ -1,0 +1,266 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Dashboard</h1>
+
+    <!-- Add the Partner Dropdown -->
+    <form method="get">
+        <div class="form-group" style="display: flex; align-items: center; margin-bottom: 10px;">
+            <select id="partner" name="partner" class="form-control" style="width: 180px;">
+                {% if selected_partner_name %}
+                    <option value="{{ selected_partner }}" selected>{{ selected_partner_name }}</option>
+                {% else %}
+                    <option value="" disabled>Select a partner</option>
+                {% endif %}
+                {% for partner in partners %}
+                    <option value="{{ partner.id }}">{{ partner.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary" style="margin-left: 10px;">Auswählen</button>
+        </div>
+    </form>
+    <a href="/homepage" class="btn btn-primary btn-lg btn-block">Home</a>
+    <!-- Quick View Tables -->
+    <div class="row mt-4">
+      <!-- Letzte Entnahmen Quick View -->
+      <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card border-primary">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Letzte Entnahmen</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Artikelnummer</th>
+                            <th>EPC</th>
+                            <th>Datum Entnahme</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in last_withdrawal_data|slice:":5" %}
+                        <tr>
+                            <td>{{ item.supplier_number }}</td>
+                            <td>{{ item.partner_sku }}</td>
+                            <td>{{ item.withdrawal_timestamp|date:"d.m.Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            Gesamt: {{ last_withdrawal_data.count }}
+        </div>
+    </div>
+</div>
+
+<!-- Zurückgelegte Artikel Quick View -->
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card border-info">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">Zurückgelegte Artikel</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Artikelnummer</th>
+                            <th>EPC</th>
+                            <th>Zuletzt geändert</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in return_articles_data|slice:":5" %}
+                        <tr>
+                            <td>{{ item.supplier_number }}</td>
+                            <td>{{ item.partner_sku }}</td>
+                            <td>{{ item.withdrawal_timestamp|date:"d.m.Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            Gesamt: {{ return_articles_data.count }}
+        </div>
+    </div>
+</div>
+
+<!-- Ablaufende Produkte Quick View -->
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card border-success">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Ablaufende Produkte</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Artikelnummer</th>
+                            <th>Charge</th>
+                            <th>Verfallsdatum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in expiry_view_data|slice:":5" %}
+                        <tr>
+                            <td>{{ item.supplier_number }}</td>
+                            <td>{{ item.batch_number }}</td>
+                            <td>{{ item.expiration_date |date:"d.m.Y"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            Gesamt: {{ expiry_view_data.count }}
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs mt-4">
+        <li class="nav-item">
+            <a class="nav-link active mr-4" data-toggle="tab" href="#lastWithdrawal">Letzte Entnahmen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link mr-4" data-toggle="tab" href="#returnArticles">Zurückgelegte Artikel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#expiryView">Ablaufende Produkte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-4" >
+        <div id="lastWithdrawal" class="tab-pane fade in show active">
+            <h3>Letzte Entnahmen</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Artikelname</th>
+                        <th>Charge</th>
+                        <th>EPC</th>
+                        <th>Datum Entnahme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Render data for Letzte Entnahmen here -->
+                    {% for item in last_withdrawal_data %}
+                    <tr>
+                        <td>{{ item.supplier_number }}</td>
+                        <td>{{ item.product.title }}</td>
+                        <td>{{ item.batch_number }}</td>
+                        <td>{{ item.partner_sku }}</td>
+                        <td>{{ item.withdrawal_timestamp|date:"d.m.Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="returnArticles" class="tab-pane fade">
+            <h3>Zurückgelegte Artikel</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Artikelname</th>
+                        <th>Charge</th>
+                        <th>EPC</th>
+                        <th>Zuletzt geändert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Render data for Zurückgelegte Artikel here -->
+                    {% for item in return_articles_data %}
+                    <tr>
+                        <td>{{ item.supplier_number }}</td>
+                        <td>{{ item.product.title }}</td>
+                        <td>{{ item.batch_number }}</td>
+                        <td>{{ item.partner_sku }}</td>
+                        <td>{{ item.withdrawal_timestamp|date:"d.m.Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="expiryView" class="tab-pane fade">
+            <h3>Ablaufende Produkte</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Artikelname</th>
+                        <th>Charge</th>
+                        <th>EPC</th>
+                        <th>Verfallsdatum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Render data for Ablaufende Produkte here -->
+                    {% for item in expiry_view_data %}
+                    <tr>
+                        <td>{{ item.supplier_number }}</td>
+                        <td>{{ item.product.title }}</td>
+                        <td>{{ item.batch_number }}</td>
+                        <td>{{ item.partner_sku }}</td>
+                        <td>{{ item.expiration_date|date:"d.m.Y"  }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card {
+        height: 438px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .quick-view-row {
+        margin-bottom: 20px;
+    }
+
+    .nav-tabs {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .nav-tabs .nav-item {
+        margin-right: 10px;
+    }
+
+    .nav-tabs:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+{% endblock %}
