@@ -3,7 +3,7 @@ from django.http import HttpResponse  # type: ignore
 from django.db.models import Sum # type: ignore
 # Create your views here.
 from django.shortcuts import render,redirect  # type: ignore
-from .models import Basicinfo,Dashboard
+from .models import Basicinfo,Dashboard,Login
 
 def print_hello(request):
     return HttpResponse("hello world")
@@ -101,16 +101,35 @@ def dashboard(request):
     return render(request,'dashboard.html',)
 
 def login(request):
-    if(request.POST):
-         print(request.POST.get('username'))
-         print(request.POST.get('password'))
-         username = request.POST.get('username')
-         password = request.POST.get('password')
-         #info = Basicinfo(f_name= f_name,l_name=l_name)
-         #info.save()
-    return render(request,'login.html',)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # Query the Login table to find the user
+        try:
+            user = Login.objects.get(username=username)
+            # Check if the password matches
+            if user.password == password:
+                # Password matches, proceed with login
+                # You may want to set session variables or use Django's authentication system here
+                return redirect('homepage')  # Redirect to home page after successful login
+            else:
+                # Password does not match
+                return render(request, 'login.html', {'error_message': 'Invalid password'})
+        except Login.DoesNotExist:
+            # User not found in the Login table
+            return render(request, 'login.html', {'error_message': 'Invalid username'})
 
-   
+    return render(request, 'login.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # Query the Login table to find the user
+        info = Login(username=username ,password=password)
+        info.save()
+    return render(request, 'signup.html')  
 
 def addrow(request):
     if(request.POST):

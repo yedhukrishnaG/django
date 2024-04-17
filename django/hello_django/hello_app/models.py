@@ -15,3 +15,7 @@ class Dashboard(models.Model):
     batch_amount = models.CharField(max_length=50)
     reorder_level = models.CharField(max_length=50)
     maximum_level  = models.CharField(max_length=50)
+
+class Login(models.Model):
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=500)
