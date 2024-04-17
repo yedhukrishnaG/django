@@ -1,21 +1,59 @@
-<h1> Add row <h1>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implify Connect</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1>Add a record</h1>
     <form method="POST" enctype="multipart/form-data">
-         {% csrf_token %}
-       
-         article_number: <input type="text" name="article_number" /></br>
-         article_title : <input type="text" name=" article_title" /> </br> 
-         stock_level: <input type="text" name="stock_level" /></br>
-         earliest_expiration_date: <input type="text" name="earliest_expiration_date" /> </br>
-         batch_amount: <input type="text" name="batch_amount" /></br>
-         reorder_level: <input type="text" name="reorder_level" />  </br>
-         maximum_level: <input type="text" name="maximum_level" /></br>
-
-        {% bootstrap_button button_type="submit" content="Submit" %}
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="article_number" class="form-label">Article Number</label>
+                    <input type="text" class="form-control" id="article_number" name="article_number">
+                </div>
+                <div class="mb-3">
+                    <label for="article_title" class="form-label">Article Title</label>
+                    <input type="text" class="form-control" id="article_title" name="article_title">
+                </div>
+                <div class="mb-3">
+                    <label for="stock_level" class="form-label">Stock Level</label>
+                    <input type="text" class="form-control" id="stock_level" name="stock_level">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="earliest_expiration_date" class="form-label">Earliest Expiration Date</label>
+                    <input type="text" class="form-control" id="earliest_expiration_date" name="earliest_expiration_date">
+                </div>
+                <div class="mb-3">
+                    <label for="batch_amount" class="form-label">Batch Amount</label>
+                    <input type="text" class="form-control" id="batch_amount" name="batch_amount">
+                </div>
+                <div class="mb-3">
+                    <label for="reorder_level" class="form-label">Reorder Level</label>
+                    <input type="text" class="form-control" id="reorder_level" name="reorder_level">
+                </div>
+                <div class="mb-3">
+                    <label for="maximum_level" class="form-label">Maximum Level</label>
+                    <input type="text" class="form-control" id="maximum_level" name="maximum_level">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <a href="/homepage" class="btn btn-primary mt-3">Home</a>
+</div>
 
-    <a href="/homepage" class="btn btn-primary btn-lg btn-block">Home</a>
+<!-- Bootstrap JS (optional, if you need JavaScript components) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    
+</body>
+</html>
