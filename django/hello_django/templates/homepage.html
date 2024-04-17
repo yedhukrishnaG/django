@@ -62,9 +62,9 @@
                 </li>
 
                 <li class="nav-item mr-2">
-                    <a href="/dashboard" class="nav-link">
+                    <a href="/report" class="nav-link">
                         <i class="fas fa-list-ul mr-2"></i>
-                        Dashboard
+                        Report
                     </a>
                 </li>
 
@@ -90,33 +90,31 @@
                 <div class="row mb-3">
                     <div class="col">
                         <button id="stockRecordButton" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
-                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;">Stock Record</a>
+                            <a href="/report" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;">Stock Record</a>
                             <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
                             <p id="rowCount" style="color:white; position: relative; z-index: 1;">{{ row_count }}</p>
                         </button>
                     </div>
                     <div class="col ">
                         <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
-                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;"> &nbsp&nbsp   Partners &nbsp  &nbsp</a>
+                            <a href="/report" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; position: relative; background-color: #198754; border-color: #198754;"> &nbsp&nbsp   Partners &nbsp  &nbsp</a>
                             <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
-                            <p style="color:white; position: relative; z-index: 1;">{{ row_count }}</p>
+                            <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
                         </button>
-
                     </div>
 
-                    
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
-                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Report&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                            <a href="/report" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Report&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                             <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
                             <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
                         </button>
                     </div>
                     <div class="col">
                         <button style="display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #198754; border: none; height: 100px; position: relative;">
-                            <a href="/dashboard" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Admin&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                            <a href="/admin" class="btn btn-primary btn-lg btn-block" style="font-size: 16px; background-color: #198754; border-color: #198754;"> &nbsp&nbsp&nbsp&nbsp Admin&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                             <hr style="width: 50%; position: absolute; bottom: 50%; transform: translateY(50%); margin: 0; border-color: white;">
                             <p style="color:white; position: relative; z-index: 1;">&nbsp</p>
                         </button>                
@@ -124,8 +122,11 @@
             </div>
            
         </div>
+        
         <div class="col-md-6" style="border-left: 1px solid #ccc; ">
+            
             <canvas id="doughnutChartCanvas" style="height: 300px;"></canvas>
+            
         </div>
     </div>
    
@@ -158,9 +159,19 @@
     };
 
     // Options for the doughnut chart
+
     var doughnutChartOptions = {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Implify Connect Overview',
+                font: {
+                    size: 17
+                }
+            }
+        }
     };
 
     // Get the canvas element
@@ -168,10 +179,27 @@
 
     // Render the doughnut chart
     var doughnutChart = new Chart(doughnutChartCanvas, {
+       
         type: 'doughnut',
         data: doughnutChartData,
         options: doughnutChartOptions
     });
+
+    doughnutChartCanvas.onclick = function(event) {
+        var activePoints = doughnutChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+        if (activePoints.length > 0) {
+            var clickedDatasetIndex = activePoints[0].datasetIndex;
+            var clickedElementIndex = activePoints[0].index;
+            if (clickedDatasetIndex === 0) {
+                var label = doughnutChart.data.labels[clickedElementIndex];
+                if (label === 'In Stock') {
+                    window.location.href = '/report';
+                }
+            }
+        }
+    };
+
+    
 </script>
 
 </body>

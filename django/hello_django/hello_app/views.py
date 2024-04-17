@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render # type: ignore
+from django.http import HttpResponse  # type: ignore
 # Create your views here.
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect  # type: ignore
 from .models import Basicinfo,Dashboard
 
 def print_hello(request):
@@ -83,13 +83,13 @@ def menu(request):
 def old_view(request):
     return render(request,'nonbt.html')
 
-def dashboard(request):
+def report(request):
     data_set = Dashboard.objects.all()
-    return render(request,'table.html',{'data_set':data_set})
+    return render(request,'report.html',{'data_set':data_set})
 
-def main(request):
+def homepage(request):
     row_count = Dashboard.objects.count()
-    return render(request,'main.html',{'row_count':row_count})
+    return render(request,'homepage.html',{'row_count':row_count})
 
 def addrow(request):
     if(request.POST):
