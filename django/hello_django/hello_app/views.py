@@ -1,6 +1,6 @@
 from django.shortcuts import render # type: ignore
 from django.http import HttpResponse  # type: ignore
-from django.db.models import Sum
+from django.db.models import Sum # type: ignore
 # Create your views here.
 from django.shortcuts import render,redirect  # type: ignore
 from .models import Basicinfo,Dashboard
@@ -99,6 +99,18 @@ def homepage(request):
 def dashboard(request):
 
     return render(request,'dashboard.html',)
+
+def login(request):
+    if(request.POST):
+         print(request.POST.get('username'))
+         print(request.POST.get('password'))
+         username = request.POST.get('username')
+         password = request.POST.get('password')
+         #info = Basicinfo(f_name= f_name,l_name=l_name)
+         #info.save()
+    return render(request,'login.html',)
+
+   
 
 def addrow(request):
     if(request.POST):
