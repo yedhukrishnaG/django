@@ -1,0 +1,60 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<form method="post" id="approvalForm">
+    <table class="table mt-4 table-header-blue">
+        <thead>
+            <tr>
+                <th>Artikelnummer</th>
+                <th>Artikelbeschreibung</th>
+                <th>Charge</th>
+                <th>Entnahmedatum</th>
+                <th>Patienten IDs</th>
+                <th>Freigabe</th>
+                <th>Ablehnungsgrund</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SDS2.2_4614-ba</td>
+                <td>Gingivaformer (Konisch, WP) | Ø 6,3 mm | GH: 5,0 mm</td>
+                <td>W22000906</td>
+                <td></td>
+                <td><input type="text" class="form-control" maxlength="10"></td>
+                <td>
+                    <select class="form-select toggle-input" aria-label="Default select example" style="color: white;">
+                  
+                        <option value="1" style="background: green;">Ja</option>
+                        <option value="2" style="background: red;">Nein</option>
+                    </select>
+                </td>
+                <td><input type="text" id="row1" class="form-control" maxlength="10" disabled></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary" id="saveButton">Daten übermitteln</button>
+</form>
+
+<script>
+    // Get the select element
+    var selectElement = document.querySelector('.toggle-input');
+    // Get the input field
+    var inputField = document.getElementById('row1');
+    
+    // Add change event listener to select element
+    selectElement.addEventListener('change', function () {
+        // Check if the selected option is "Nein"
+        if (selectElement.value === '2') {
+            // Enable the input field
+            inputField.disabled = false;
+            // Set the select element color to red
+            selectElement.style.background = 'red';
+        } else {
+            // Disable the input field
+            inputField.disabled = true;
+            // Set the select element color to green
+            selectElement.style.background = 'green';
+        }
+    });
+</script>

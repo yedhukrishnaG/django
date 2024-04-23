@@ -32,5 +32,6 @@ urlpatterns = [
     path('addrow/', views.addrow, name='addrow'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
+    path('newreport/', views.newreport, name='newreport'),
     path('', views.print_hello),
 ]

@@ -147,4 +147,8 @@ def addrow(request):
          info.save()
     return render(request,'addrow.html')
 
+def newreport(request):         
+         
+    return render(request,'newreport.html')
+
 
