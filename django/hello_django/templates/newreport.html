@@ -2,6 +2,12 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
+<style>
+    .toggle-input {
+        border: 1px solid black;
+    }
+</style>
+
 <form method="post" id="approvalForm">
     <table class="table mt-4 table-header-blue">
         <thead>
@@ -23,11 +29,10 @@
                 <td></td>
                 <td><input type="text" class="form-control" maxlength="10"></td>
                 <td>
-                    <select class="form-select toggle-input" aria-label="Default select example" style="color: white;">
-                  
-                        <option value="1" style="background: green;">Ja</option>
-                        <option value="2" style="background: red;">Nein</option>
-                    </select>
+                    <div class="btn-group" role="group" aria-label="Freigabe">
+                        <button type="button" class="btn toggle-input" value="1">Ja</button>
+                        <button type="button" class="btn toggle-input" value="2">Nein</button>
+                    </div>
                 </td>
                 <td><input type="text" id="row1" class="form-control" maxlength="10" disabled></td>
             </tr>
@@ -37,24 +42,36 @@
 </form>
 
 <script>
-    // Get the select element
-    var selectElement = document.querySelector('.toggle-input');
+    // Get all toggle-input buttons
+    var toggleButtons = document.querySelectorAll('.toggle-input');
     // Get the input field
     var inputField = document.getElementById('row1');
     
-    // Add change event listener to select element
-    selectElement.addEventListener('change', function () {
-        // Check if the selected option is "Nein"
-        if (selectElement.value === '2') {
-            // Enable the input field
-            inputField.disabled = false;
-            // Set the select element color to red
-            selectElement.style.background = 'red';
-        } else {
-            // Disable the input field
+    // Add click event listener to all toggle-input buttons
+    toggleButtons.forEach(function(button) {
+        button.addEventListener('click', function () {
+            // Check if the button is already active
+            var isActive = button.classList.contains('active');
+            
+            // Reset all button styles
+            toggleButtons.forEach(function(btn) {
+                btn.classList.remove('active');
+                btn.style.background = 'white';
+            });
+
+            // Disable input field by default
             inputField.disabled = true;
-            // Set the select element color to green
-            selectElement.style.background = 'green';
-        }
+
+            // Toggle button and set styles accordingly
+            if (!isActive) {
+                button.classList.add('active');
+                if (button.value === '1') {
+                    button.style.background = 'green';
+                } else if (button.value === '2') {
+                    button.style.background = 'red';
+                    inputField.disabled = false;
+                }
+            }
+        });
     });
 </script>

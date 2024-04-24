@@ -33,5 +33,6 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
     path('newreport/', views.newreport, name='newreport'),
+    path('newhomepage/', views.newhomepage, name='newhomepage'),
     path('', views.print_hello),
 ]

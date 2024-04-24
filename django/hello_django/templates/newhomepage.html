@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implify Connect</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        /* Custom CSS for blue table header */
+        .table-header-blue th {
+            background-color: #007bff; /* Blue color */
+            color: white; /* Text color */
+        }
+        /* Custom CSS for vertical line */
+        .vertical-line {
+            border-right: 2px solid #0d6efd;
+            height: 500px;
+        }
+
+        .shifted-row {
+            margin-top: 5%;
+        }
+
+        .text-data{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Implify Connect</a>
+            <!-- Navbar toggle button for smaller screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <!-- Add more navbar items as needed -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container-fluid mt-5">
+        <div class="row shifted-row">
+            <!-- Left panel with tabs -->
+            <div class="col-md-3 ">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active text-data" id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Stock Record</button>
+                    <button class="nav-link text-data" id="tab2-tab" data-bs-toggle="pill" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Dashboard</button>
+                    <button class="nav-link text-data" id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">Report</button>
+                    <button class="nav-link text-data" id="tab4-tab" data-bs-toggle="pill" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">Admin</button>
+                </div>
+            </div>
+
+            <!-- Vertical line -->
+            <div class="col-md-1 d-none d-md-block vertical-line"></div>
+
+            <!-- Right panel with tab content -->
+            <div class="col-md-8">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <!-- Tab 1 content -->
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                        <div id="dashboard">
+                            <div>Select a partner</div>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Partners
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="#">Action 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Action 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Action 3</a></li>
+                                </ul> 
+                            </div>
+                            <div>
+                                <table id="example" class="display">
+                                    <thead class="table-header-blue">
+                                        <tr>
+                                            <th scope="col">Article Number</th>
+                                            <th scope="col">Article Title</th>
+                                            <th scope="col">Stock Level</th>
+                                            <th scope="col">Earliest Expiration Date</th>
+                                            <th scope="col">Batch Amount</th>
+                                            <th scope="col">Reorder level</th>
+                                            <th scope="col">Maximum level</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Table body content goes here -->
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>   
+                    </div>
+
+                    <!-- Tab 2 content -->
+                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                        <p>Hello World</p>
+                    </div>
+
+                    <!-- Tab 3 content -->
+                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                        <p>Heyy</p>
+                    </div>
+
+                    <!-- Tab 4 content -->
+                    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Column 1</th>
+                                    <th scope="col">Column 2</th>
+                                    <th scope="col">Column 3</th>
+                                    <th scope="col">Column 4</th>
+                                    <th scope="col">Column 5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table body content goes here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Function to handle screen width check and actions
+            function handleScreenWidth() {
+                // Check screen width
+                var screenWidth = window.innerWidth;
+
+                // If screen width is less than 768px (bootstrap mobile breakpoint), show alert
+                if (screenWidth < 768) {
+                    // Handle mobile view if needed
+                } else {
+                    // If screen width is greater than or equal to 768px, show DataTable
+                    // Check if DataTable is already initialized
+                    if (!$.fn.DataTable.isDataTable('#example')) {
+                        // Initialize DataTable
+                        $('#example').DataTable({
+                            "lengthMenu": [],
+                            "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
+                            "lengthChange": false,
+                            "pageLength": 20,
+                        });
+                    }
+                }
+            }
+
+            // Call handleScreenWidth function on page load
+            handleScreenWidth();
+
+            // Call handleScreenWidth function on window resize
+            $(window).resize(handleScreenWidth);
+
+            // Call handleScreenWidth function when the page is reloaded
+            $(window).on('load', handleScreenWidth);
+
+            // Call handleScreenWidth function when the page is about to be reloaded
+            $(window).on('beforeunload', handleScreenWidth);
+        });
+    </script>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Home button -->
+    <a href="/homepage" class="btn btn-primary btn-lg btn-block">Home</a>
+</body>
+</html>

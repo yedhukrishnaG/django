@@ -151,4 +151,8 @@ def newreport(request):
          
     return render(request,'newreport.html')
 
+def newhomepage(request):         
+         
+    return render(request,'newhomepage.html')
+
 
