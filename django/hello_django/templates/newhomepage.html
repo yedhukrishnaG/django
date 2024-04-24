@@ -113,9 +113,25 @@
                     </div>
 
                     <!-- Tab 2 content -->
-                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                        <p>Hello World</p>
-                    </div>
+                   <!-- Tab 2 content -->
+                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                    <div id="dashboard1">
+                        <table id="example1" class="display">
+                            <thead class="table-header-blue">
+                                <tr>
+                                    <th scope="col">Article Number</th>
+                                    <th scope="col">Article Title</th>
+                                    <th scope="col">Reorder level</th>
+                                    <th scope="col">Maximum level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table> 
+                    </div> 
+                </div>
+
 
                     <!-- Tab 3 content -->
                     <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
@@ -160,6 +176,43 @@
                     if (!$.fn.DataTable.isDataTable('#example')) {
                         // Initialize DataTable
                         $('#example').DataTable({
+                            "lengthMenu": [],
+                            "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
+                            "lengthChange": false,
+                            "pageLength": 20,
+                        });
+                    }
+                }
+            }
+
+            // Call handleScreenWidth function on page load
+            handleScreenWidth();
+
+            // Call handleScreenWidth function on window resize
+            $(window).resize(handleScreenWidth);
+
+            // Call handleScreenWidth function when the page is reloaded
+            $(window).on('load', handleScreenWidth);
+
+            // Call handleScreenWidth function when the page is about to be reloaded
+            $(window).on('beforeunload', handleScreenWidth);
+        });
+
+        $(document).ready(function () {
+            // Function to handle screen width check and actions
+            function handleScreenWidth() {
+                // Check screen width
+                var screenWidth = window.innerWidth;
+
+                // If screen width is less than 768px (bootstrap mobile breakpoint), show alert
+                if (screenWidth < 768) {
+                    // Handle mobile view if needed
+                } else {
+                    // If screen width is greater than or equal to 768px, show DataTable
+                    // Check if DataTable is already initialized
+                    if (!$.fn.DataTable.isDataTable('#example1')) {
+                        // Initialize DataTable
+                        $('#example1').DataTable({
                             "lengthMenu": [],
                             "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
                             "lengthChange": false,
