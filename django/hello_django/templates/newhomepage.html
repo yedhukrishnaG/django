@@ -22,7 +22,8 @@
         /* Custom CSS for vertical line */
         .vertical-line {
             border-right: 2px solid #0d6efd;
-            height: 500px;
+            height: 600px;
+           
         }
 
         .shifted-row {
@@ -62,7 +63,7 @@
     <div class="container-fluid mt-5">
         <div class="row shifted-row">
             <!-- Left panel with tabs -->
-            <div class="col-md-3 ">
+            <div class="col-md-2 vertical-line">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active text-data" id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Stock Record</button>
                     <button class="nav-link text-data" id="tab2-tab" data-bs-toggle="pill" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Dashboard</button>
@@ -71,11 +72,8 @@
                 </div>
             </div>
 
-            <!-- Vertical line -->
-            <div class="col-md-1 d-none d-md-block vertical-line"></div>
-
             <!-- Right panel with tab content -->
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="tab-content" id="v-pills-tabContent">
                     <!-- Tab 1 content -->
                     <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
@@ -106,6 +104,16 @@
                                     </thead>
                                     <tbody>
                                         <!-- Table body content goes here -->
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div> 
