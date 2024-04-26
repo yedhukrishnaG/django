@@ -156,3 +156,20 @@ def newhomepage(request):
     return render(request,'newhomepage.html')
 
 
+def newstockrecordview(request):         
+         
+    return render(request,'newstockrecordview.html')
+
+def newdashboardview(request):         
+         
+    return render(request,'newdashboardview.html')
+
+def newreportview(request):         
+         
+    return render(request,'newreportview.html')
+
+def newadminview(request):         
+         
+    return render(request,'newadminview.html')
+
+

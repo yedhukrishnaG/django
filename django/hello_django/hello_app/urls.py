@@ -34,5 +34,9 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('newreport/', views.newreport, name='newreport'),
     path('newhomepage/', views.newhomepage, name='newhomepage'),
+    path('newstockrecordview/', views.newstockrecordview, name='newstockrecordview'),
+    path('newdashboardview/', views.newdashboardview, name='newdashboardview'),
+    path('newreportview/', views.newreportview, name='newreportview'),
+    path('newadminview/', views.newadminview, name='newadminview'),
     path('', views.print_hello),
 ]
