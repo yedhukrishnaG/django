@@ -14,6 +14,13 @@
             padding: 0;
             background-color: #f8f8f8;
         }
+
+        .vertical-line {
+            border-right: 2px solid #0d6efd;
+            height: 600px;
+           
+        }
+
         .container {
             display: flex;
             max-width: 1200px;
@@ -21,11 +28,14 @@
             background-color: #fff;
             border-radius: 5px;
             overflow: hidden;
+            height: 700px;
         }
         .sidebar {
             width: 200px;
             background-color: white;
             color: #fff;
+            position: relative;
+            top: 68px;
         }
         .sidebar ul {
             list-style-type: none;
@@ -43,6 +53,8 @@
         .content {
             flex-grow: 1;
             padding: 20px;
+            position: relative;
+            top: 42px;
         }
         .tab {
             color: #0056b3;
@@ -53,7 +65,7 @@
             cursor: pointer;
         }
         .tab.active {
-            background-color: #0056b3;
+            background-color: #007bff;
             color: #fff;
         }
         .tab-content {
@@ -74,9 +86,30 @@
        
     </style>
 </head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Implify Connect</a>
+        <!-- Navbar toggle button for smaller screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <!-- Add more navbar items as needed -->
+            </ul>
+        </div>
+    </div>
+</nav>
 <body>
     <div class="container">
-        <div class="sidebar">
+        <div class="sidebar vertical-line">
             <ul>
                 <li class="tab" id="stockRecordTab">Stock Record</li>
                 <li class="tab active" id="dashboardTab">Dashboard</li>
@@ -106,8 +139,7 @@
                             <th scope="col">Stock Level</th>
                             <th scope="col">Earliest Expiration Date</th>
                             <th scope="col">Batch Amount</th>
-                            <th scope="col">Reorder level</th>
-                            <th scope="col">Maximum level</th>
+                          
                         </tr>
                     </thead>
                     <tbody>
@@ -118,8 +150,7 @@
                             <td>1</td>
                             <td>1</td>
                             <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+                           
                         </tr>
                        
                     </tbody>
@@ -127,17 +158,17 @@
             </div>
             <div id="stockRecordContent" class="tab-content">
                 <!-- Content for Dashboard tab -->
-                <p>This is the dashboard content.</p>
+                <p></p>
             </div>
 
             <div id="dashboardContent" class="tab-content">
                 <!-- Content for Report tab -->
-                <p>This is the report content.</p>
+                <p></p>
             </div>
 
             <div id="adminContent" class="tab-content">
                 <!-- Content for Admin tab -->
-                <p>This is the admin content.</p>
+                <p></p>
             </div>
         </div>
     </div>
