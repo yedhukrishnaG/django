@@ -159,7 +159,7 @@
                 </div>
                 <div class="icontabs" id="iconslisttab">
                     <ul>
-                        <li id="first" class="tab" > 
+                        <li class="tab" id="first"  > 
                             <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
                                 <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm0 3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm8-2a1 1 0 0 1 .117 1.993L8 3h.01L8 3zm-6 5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1H2a.5.5 0 0 1-.5-.5zm7 5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1 0-1h6a.5.5 0 0 1 .5.5z"/>
                             </svg>
@@ -170,7 +170,7 @@
                                 <path d="M11.5 1a.5.5 0 0 1 .5.5V4h2a.5.5 0 0 1 .447.724l-6 10a.5.5 0 0 1-.894 0l-2-4a.5.5 0 0 1 .447-.724H5V1.5a.5.5 0 0 1 .5-.5zM8 14a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm-.5-7a.5.5 0 0 0-1 0v2.657L5.177 9.823a.5.5 0 1 0 .646.765l1.5-1.15a.5.5 0 0 1 .646 0l1.5 1.15a.5.5 0 0 0 .646-.765L8.5 8.657V7z"/>
                               </svg>
                         </li> 
-                        <li class="tab  active" id="third">
+                        <li class="tab active" id="third">
                             <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
                                 <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H5zm9-6V1.5a.5.5 0 0 0-.5-.5H10v2h2V2.5a.5.5 0 0 0-.5-.5z"/>
                                 <path d="M4 14.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v-9a.5.5 0 0 1-.5.5H9V4h3.5a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-7a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 4.5H2a.5.5 0 0 1-.5-.5V1a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V1.5a1.5 1.5 0 0 0-1.5-1.5H2a1.5 1.5 0 0 0-1.5 1.5v12A1.5 1.5 0 0 0 2 15.5h2.5a.5.5 0 0 0 0-1H2a.5.5 0 0 1-.5-.5zM6 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z"/>
@@ -278,6 +278,17 @@
         // JavaScript code
         $(document).ready(function() {
             // Initialize DataTable
+
+            var storedViewState = localStorage.getItem('viewState');
+            if (storedViewState === 'text') {
+                $(".texttabs").show();
+                $(".icontabs").hide();
+                $(".sidebar").animate({width: "200px"}, 200);
+            } else {
+                $(".texttabs").hide();
+                $(".icontabs").show();
+                $(".sidebar").animate({width: "90px"}, 200);
+            }
           
             $('#stockRecordTable').DataTable({
                 "lengthMenu": [],
@@ -296,10 +307,11 @@
                 // Toggle the width of the sidebar based on which tabs are displayed
                 var sidebar = $(".sidebar");
                 if (isTextTabsVisible) {
-                    sidebar.animate({width: "200px"}, "fast"); // Adjust width for text tabs
+                    sidebar.animate({width: "200px"}, 200); // Adjust width for text tabs
                 } else {
-                    sidebar.animate({width: "90px"}, "fast"); // Adjust width for icon tabs
+                    sidebar.animate({width: "90px"}, 200); // Adjust width for icon tabs
                 }
+                localStorage.setItem('viewState', isTextTabsVisible ? 'text' : 'icons');
             });
             
 
