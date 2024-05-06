@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Stock Record View</title>
+    <title>New Report  View</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
         
         .container {
             display: flex;
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             background-color: #fff;
             border-radius: 5px;
@@ -84,7 +84,7 @@
         }
      
         .table-header-blue th {
-            background-color: #007bff; /* Blue color */
+            background-color: grey; /* Blue color */
             color: white; /* Text color */
         }
 
@@ -104,6 +104,8 @@
             overflow: hidden;
             background-color: blue;
             height: 50%;
+            position: relative;
+            top: 20px;
           }
 
           .icontabs{
@@ -112,12 +114,40 @@
 
           .arrowmark {
             /* Add styles to position the arrowmark */
-            position: absolute;
-            top: 198px; /* Adjust as needed */
-            left: 20px; /* Adjust as needed */
-            /* Add other styles as needed */
-        }
+            position: relative;
+            left: 37%;
+            bottom: 4%;
         
+        }
+
+        .manufactures{
+            position: relative;
+            bottom: 94px;
+            left: 57%;
+        }
+
+        
+        .dataTables_wrapper .dataTables_filter {
+            display: none;
+        }
+
+        .searchclass{
+            position: relative;
+            bottom: 59px;
+            left: 25%;
+
+        }
+
+        .settings-profile{
+            position: relative;
+            top: 25%;
+        }
+
+        .texttabs{
+            position: relative;
+            top: 5%;
+        }
+       
        
     </style>
 </head>
@@ -129,17 +159,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <!-- Add more navbar items as needed -->
-            </ul>
-        </div>
+   
     </div>
 </nav>
 <body>
@@ -147,7 +167,11 @@
     <div class="container">
         
         <div class="sidebar vertical-line">
-        
+         <div class="logo" >
+            <a href="/admin" class="ml-5">
+                <img style=" width: 61%;" src="/static/images/navbar_images/logo.png">
+            </a>
+         </div>   
             <div class="contents">
                 <div class="texttabs" id="textlisttab">
                     <ul>
@@ -165,12 +189,12 @@
                             </svg>
                               
                         </li> 
-                        <li  class="tab" id="second"> 
+                        <li  class="tab active" id="second"> 
                             <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
                                 <path d="M11.5 1a.5.5 0 0 1 .5.5V4h2a.5.5 0 0 1 .447.724l-6 10a.5.5 0 0 1-.894 0l-2-4a.5.5 0 0 1 .447-.724H5V1.5a.5.5 0 0 1 .5-.5zM8 14a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm-.5-7a.5.5 0 0 0-1 0v2.657L5.177 9.823a.5.5 0 1 0 .646.765l1.5-1.15a.5.5 0 0 1 .646 0l1.5 1.15a.5.5 0 0 0 .646-.765L8.5 8.657V7z"/>
                               </svg>
                         </li> 
-                        <li class="tab active" id="third">
+                        <li class="tab" id="third">
                             <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
                                 <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H5zm9-6V1.5a.5.5 0 0 0-.5-.5H10v2h2V2.5a.5.5 0 0 0-.5-.5z"/>
                                 <path d="M4 14.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v-9a.5.5 0 0 1-.5.5H9V4h3.5a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-7a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 4.5H2a.5.5 0 0 1-.5-.5V1a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V1.5a1.5 1.5 0 0 0-1.5-1.5H2a1.5 1.5 0 0 0-1.5 1.5v12A1.5 1.5 0 0 0 2 15.5h2.5a.5.5 0 0 0 0-1H2a.5.5 0 0 1-.5-.5zM6 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z"/>
@@ -194,6 +218,27 @@
       
             </div>
 
+            <div class="settings-profile" style="position: relative; top: 27%;">
+                <ul>
+                    <li class="tab" id="settingsTab">Settings</li>
+                    <li class="tab" id="logoutTab">
+                        <!-- SVG icon for profile photo -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm0 1c-1.5 0-4 0-4 2 0 .5 1.5 1 4 1s4-.5 4-1c0-2-2.5-2-4-2zm3-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                        </svg>
+                        Logout
+                        <!-- SVG icon for logout -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.5 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1 0-1h8a.5.5 0 0 1 .5.5z"/>
+                            <path fill-rule="evenodd" d="M11.854 8a.5.5 0 0 1 0 .707l-2.5 2.5a.5.5 0 0 1-.708 0l-.707-.707a.5.5 0 0 1 0-.708L10.646 8l-2.707-2.707a.5.5 0 0 1 0-.708l.707-.707a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .707z"/>
+                            <path fill-rule="evenodd" d="M3.5 8a.5.5 0 0 1 .5-.5h6.793L9.146 6.354a.5.5 0 0 1 .708-.708l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L10.293 8.5H4a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </li>
+                </ul>
+            </div>
+            
+            
+
         </div>
           
         <div class="content">
@@ -207,20 +252,30 @@
                     <li><a class="dropdown-item" href="#">Action 2</a></li>
                     <li><a class="dropdown-item" href="#">Action 3</a></li>
                 </ul> 
+             <div class="searchclass">
+                <label style="margin-left: 2%" for="stockRecordTable_search">Search:</label>
+                <input style="width: 20%" type="search" class="form-control form-control-sm" id="stockRecordTable_search" placeholder="" aria-controls="stockRecordTable">
+             </div>
+
+                <button class="btn btn-primary dropdown-toggle manufactures" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Manufactures
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="#">Stark</a></li>
+                    <li><a class="dropdown-item" href="#">Megagen</a></li>
+                    <li><a class="dropdown-item" href="#">Implify Test</a></li>
+                </ul>
                 
+        
             </div>
-           
-           
-           
-            <nav>
-                <div class="nav nav-tabs tabview" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                </div>
-              </nav>
-              <div class="tab-content active " id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Existing navbar items -->
+                </ul>
+                <!-- Filter dropdown -->
+
                     <div id="stockRecordContent" class="tab-content active stocktabletab1">
                         <!-- Table for displaying stock records -->
                         <table id="stockRecordTable" class="dataTable">
@@ -249,10 +304,6 @@
                                
                             </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
               </div>
         
             <div id="dashboardContent" class="tab-content">
@@ -290,11 +341,16 @@
                 $(".sidebar").animate({width: "90px"}, 200);
             }
           
-            $('#stockRecordTable').DataTable({
+            var table = $('#stockRecordTable').DataTable({
                 "lengthMenu": [],
                 "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
                 "lengthChange": false,
                 "pageLength": 20,
+                "searching": true
+            });
+        
+            $('#stockRecordTable_search').on('keyup', function() {
+                table.search(this.value).draw(); // Apply search to DataTable
             });
 
             $(".arrowmark").click(function() {
