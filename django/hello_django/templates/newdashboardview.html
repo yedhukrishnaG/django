@@ -117,7 +117,25 @@
             left: 20px; /* Adjust as needed */
             /* Add other styles as needed */
         }
+
+        .manufactures{
+            position: relative;
+            bottom: 94px;
+            left: 57%;
+        }
+
         
+        .dataTables_wrapper .dataTables_filter {
+            display: none;
+        }
+
+        .searchclass{
+            position: relative;
+            bottom: 59px;
+            left: 25%;
+}
+        }
+       
        
     </style>
 </head>
@@ -207,20 +225,30 @@
                     <li><a class="dropdown-item" href="#">Action 2</a></li>
                     <li><a class="dropdown-item" href="#">Action 3</a></li>
                 </ul> 
+             <div class="searchclass">
+                <label style="margin-left: 2%" for="stockRecordTable_search">Search:</label>
+                <input style="width: 20%" type="search" class="form-control form-control-sm" id="stockRecordTable_search" placeholder="" aria-controls="stockRecordTable">
+             </div>
+
+                <button class="btn btn-primary dropdown-toggle manufactures" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Manufactures
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="#">Stark</a></li>
+                    <li><a class="dropdown-item" href="#">Megagen</a></li>
+                    <li><a class="dropdown-item" href="#">Implify Test</a></li>
+                </ul>
                 
+        
             </div>
-           
-           
-           
-            <nav>
-                <div class="nav nav-tabs tabview" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                </div>
-              </nav>
-              <div class="tab-content active " id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Existing navbar items -->
+                </ul>
+                <!-- Filter dropdown -->
+
                     <div id="stockRecordContent" class="tab-content active stocktabletab1">
                         <!-- Table for displaying stock records -->
                         <table id="stockRecordTable" class="dataTable">
@@ -249,10 +277,6 @@
                                
                             </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
               </div>
         
             <div id="dashboardContent" class="tab-content">
@@ -290,11 +314,16 @@
                 $(".sidebar").animate({width: "90px"}, 200);
             }
           
-            $('#stockRecordTable').DataTable({
+            var table = $('#stockRecordTable').DataTable({
                 "lengthMenu": [],
                 "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
                 "lengthChange": false,
                 "pageLength": 20,
+                "searching": true
+            });
+        
+            $('#stockRecordTable_search').on('keyup', function() {
+                table.search(this.value).draw(); // Apply search to DataTable
             });
 
             $(".arrowmark").click(function() {
