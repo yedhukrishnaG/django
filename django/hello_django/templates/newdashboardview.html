@@ -84,7 +84,7 @@
         }
      
         .table-header-blue th {
-            background-color: #007bff; /* Blue color */
+            background-color: grey; /* Blue color */
             color: white; /* Text color */
         }
 
@@ -104,6 +104,8 @@
             overflow: hidden;
             background-color: blue;
             height: 50%;
+            position: relative;
+            top: 20px;
           }
 
           .icontabs{
@@ -112,10 +114,10 @@
 
           .arrowmark {
             /* Add styles to position the arrowmark */
-            position: absolute;
-            top: 198px; /* Adjust as needed */
-            left: 20px; /* Adjust as needed */
-            /* Add other styles as needed */
+            position: relative;
+            left: 37%;
+            bottom: 4%;
+        
         }
 
         .manufactures{
@@ -152,17 +154,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <!-- Add more navbar items as needed -->
-            </ul>
-        </div>
+   
     </div>
 </nav>
 <body>
@@ -170,7 +162,11 @@
     <div class="container">
         
         <div class="sidebar vertical-line">
-        
+         <div class="logo" >
+            <a href="/admin" class="ml-5">
+                <img style=" width: 61%;" src="/static/images/navbar_images/logo.png">
+            </a>
+         </div>   
             <div class="contents">
                 <div class="texttabs" id="textlisttab">
                     <ul>
