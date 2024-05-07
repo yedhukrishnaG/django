@@ -80,6 +80,8 @@
         table.dataTable {
             border-collapse: collapse;
             width: 100%;
+            border-radius: 10px; /* Adjust the radius as needed */
+            overflow: hidden; /* Ensure the curved corners are visible */
         }
      
         .table-header-blue th {
@@ -153,7 +155,12 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Implify Connect</a>
+        <div class="logo" >
+            <a href="/admin" class="ml-5">
+                <img style=" width: 30%;" src="/static/images/navbar_images/logo.png">
+            </a>
+         </div> 
+       
         <!-- Navbar toggle button for smaller screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -167,11 +174,7 @@
     <div class="container">
         
         <div class="sidebar vertical-line">
-         <div class="logo" >
-            <a href="/admin" class="ml-5">
-                <img style=" width: 61%;" src="/static/images/navbar_images/logo.png">
-            </a>
-         </div>   
+          
             <div class="contents">
                 <div class="texttabs" id="textlisttab">
                     <ul>
@@ -289,7 +292,6 @@
                                     <th scope="col">Article Number</th>
                                     <th scope="col">Article Title</th>
                                     <th scope="col">Stock Level</th>
-                                    <th scope="col">Earliest Expiration Date</th>
                                     <th scope="col">Batch Amount</th>
                                     <th scope="col">Reorder level</th>
                                     <th scope="col">Maximum level</th>
@@ -297,15 +299,17 @@
                             </thead>
                             <tbody>
                                 <!-- Table body content goes here -->
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
+                              
+            {% for item in data_set %}
+            <tr>
+                <td>{{ item.article_number }}</td>
+                <td>{{ item.article_title }}</td>
+                <td>{{ item.stock_level }}</td>
+                <td>{{ item.batch_amount }}</td>
+                <td>{{ item.reorder_level }}</td>
+                <td>{{ item.maximum_level }}</td>
+            </tr>
+            {% endfor %}
                                
                             </tbody>
                         </table>
@@ -350,7 +354,7 @@
                 "lengthMenu": [],
                 "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
                 "lengthChange": false,
-                "pageLength": 20,
+                "pageLength": 7,
                 "searching": true
             });
         
