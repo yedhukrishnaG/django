@@ -304,17 +304,17 @@
                             <tbody>
                                 <!-- Table body content goes here -->
                               
-            {% for item in data_set %}
-            <tr>
-                <td>{{ item.article_number }}</td>
-                <td>{{ item.article_title }}</td>
-                <td>{{ item.stock_level }}</td>
-                <td>{{ item.batch_amount }}</td>
-                <td>{{ item.reorder_level }}</td>
-                <td>{{ item.maximum_level }}</td>
-            </tr>
-            {% endfor %}
-                               
+                            {% for item in data_set %}
+                            <tr>
+                                <td>{{ item.article_number }}</td>
+                                <td>{{ item.article_title }}</td>
+                                <td>{{ item.stock_level }}</td>
+                                <td>{{ item.batch_amount }}</td>
+                                <td>{{ item.reorder_level }}</td>
+                                <td>{{ item.maximum_level }}</td>
+                            </tr>
+                            {% endfor %}
+                                            
                             </tbody>
                         </table>
               </div>
