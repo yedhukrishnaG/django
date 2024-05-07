@@ -76,6 +76,8 @@
         }
         .tab-content.active {
             display: block;
+            position: relative;
+            bottom: 10%;
         }
         table.dataTable {
             border-collapse: collapse;
@@ -91,7 +93,7 @@
 
         .tabview{
             position: relative;
-            top: 8px;
+            bottom: 66px;
         }
 
         .stocktabletab1{
@@ -160,7 +162,9 @@
                 <img style=" width: 30%;" src="/static/images/navbar_images/logo.png">
             </a>
          </div> 
-       
+         <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+            Tooltip on top
+          </button>
         <!-- Navbar toggle button for smaller screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -246,7 +250,7 @@
         </div>
           
         <div class="content">
-            <div>Select a partner</div>
+           
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     Partners
@@ -257,8 +261,8 @@
                     <li><a class="dropdown-item" href="#">Action 3</a></li>
                 </ul> 
              <div class="searchclass">
-                <label style="margin-left: 2%" for="stockRecordTable_search">Search:</label>
-                <input style="width: 20%" type="search" class="form-control form-control-sm" id="stockRecordTable_search" placeholder="" aria-controls="stockRecordTable">
+                <label style="margin-left: 2%" for="stockRecordTable_search"></label>
+                <input style="width: 20%" type="search" class="form-control form-control-sm" id="stockRecordTable_search" placeholder="Search..." aria-controls="stockRecordTable">
              </div>
 
                 <button class="btn btn-primary dropdown-toggle manufactures" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -354,13 +358,15 @@
                 "lengthMenu": [],
                 "dom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
                 "lengthChange": false,
-                "pageLength": 7,
+                "pageLength": 10,
                 "searching": true
             });
         
             $('#stockRecordTable_search').on('keyup', function() {
                 table.search(this.value).draw(); // Apply search to DataTable
             });
+
+            $('[data-bs-toggle="tooltip"]').tooltip();
 
             $(".arrowmark").click(function() {
                 // Toggle visibility of texttabs and icontabs
