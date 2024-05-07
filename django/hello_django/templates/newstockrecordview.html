@@ -85,6 +85,23 @@
             border-radius: 10px; /* Adjust the radius as needed */
             overflow: hidden; /* Ensure the curved corners are visible */
         }
+
+        /* Add vertical lines between table columns */
+        table.dataTable th,
+        table.dataTable td {
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 8px; /* Adjust padding as needed */
+        }
+
+        table.dataTable tbody tr:nth-child(odd) {
+            background-color: #f4f4f4; /* Light ash color */
+        }
+        
+        /* Change the background color of each row on hover */
+        table.dataTable tbody tr:hover {
+            background-color: #e0e0e0; /* Lighter ash color */
+        }
      
         .table-header-blue th {
             background-color: grey; /* Blue color */
@@ -102,7 +119,7 @@
         }
 
 
-          .contents {
+        .contents {
             padding: 0 18px;
             overflow: hidden;
             background-color: lightgrey;
@@ -111,11 +128,11 @@
             top: 20px;
           }
 
-          .icontabs{
+        .icontabs{
             display:none;
           }
 
-          .arrowmark {
+        .arrowmark {
             /* Add styles to position the arrowmark */
             position: relative;
             left: 37%;
