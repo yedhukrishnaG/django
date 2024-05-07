@@ -298,7 +298,7 @@
                                 <!-- Table body content goes here -->
                                 {% for item in data_set %}
                                 <tr>
-                                    <td>{{ item.article_number }}</td>
+                                    <td data-toggle="tooltip" title={{ item.article_number }}>{{ item.article_number }}</td>
                                     <td>{{ item.article_title }}</td>
                                     <td>{{ item.stock_level }}</td>
                                     <td>{{ item.batch_amount }}</td>
@@ -354,6 +354,9 @@
                 "pageLength": 10,
                 "searching": true
             });
+
+
+            $('[data-toggle="tooltip"]').tooltip();
         
             $('#stockRecordTable_search').on('keyup', function() {
                 table.search(this.value).draw(); // Apply search to DataTable
