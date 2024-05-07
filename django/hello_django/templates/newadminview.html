@@ -301,16 +301,52 @@
                             <tbody>
                                 <!-- Table body content goes here -->
                               
-                            {% for item in data_set %}
-                            <tr>
-                                <td data-toggle="tooltip" title={{ item.article_number }}>{{ item.article_number }}</td>
-                                <td>{{ item.article_title }}</td>
-                                <td>{{ item.stock_level }}</td>
-                                <td>{{ item.batch_amount }}</td>
-                                <td>{{ item.reorder_level }}</td>
-                                <td>{{ item.maximum_level }}</td>
-                            </tr>
-                            {% endfor %}
+                                {% for item in data_set %}
+                                <tr>
+                                    <td data-toggle="tooltip" title={{ item.article_number }}>
+                                        {% if item.article_number|length > 8 %}
+                                            {{ item.article_number|slice:":5" }}...
+                                        {% else %}
+                                            {{ item.article_number }}
+                                        {% endif %}
+                                    </td>
+                                    <td >
+                                        {% if item.article_title|length > 8 %}
+                                            {{ item.article_title|slice:":5" }}...
+                                        {% else %}
+                                            {{ item.article_title }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.stock_level|length > 8 %}
+                                            {{ item.stock_level|slice:":5" }}...
+                                        {% else %}
+                                            {{ item.stock_level }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.batch_amount|length > 8 %}
+                                            {{ item.batch_amount|slice:":5" }}...
+                                        {% else %}
+                                            {{ item.batch_amount }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.reorder_level|length > 8 %}
+                                            {{ item.reorder_level|slice:":5" }}...
+                                        {% else %}
+                                            {{ item.reorder_level }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.maximum_level|length > 8 %}
+                                            {{ item.maximum_level|slice:":5" }}...
+                                        {% else %}
+                                            {{ item.maximum_level }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
                                             
                             </tbody>
                         </table>
