@@ -412,7 +412,18 @@
                 table.search(this.value).draw(); // Apply search to DataTable
             });
 
-            $('[data-toggle="tooltip"]').tooltip();
+           
+            function initializeTooltips() {
+                $('[data-toggle="tooltip"]').tooltip();
+            }
+        
+            // Initialize tooltips on page load
+            initializeTooltips();
+        
+            // Event listener for DataTable draw event
+            $('#stockRecordTable').on('draw.dt', function() {
+                initializeTooltips();
+            });
 
             $(".arrowmark").click(function() {
                 // Toggle visibility of texttabs and icontabs
